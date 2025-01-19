@@ -1,0 +1,7 @@
+DELETE FROM COMPANY;
+
+INSERT INTO COMPANY (COM_NAME, COM_CATEGORY, COM_ADDR, COM_PIC_FNAME, COM_PIC_LNAME, COM_PIC_TITLE, COM_PHONE, COM_EMAIL, POSTCODE) VALUES ('EcoBuild Solutions','Sustainable Build','123 Green Street, Kuala Lumpur','Farhan','Ahmad','Mr','6012-345 6789','info@ecobuild.com',50000);
+INSERT INTO COMPANY (COM_NAME, COM_CATEGORY, COM_ADDR, COM_PIC_FNAME, COM_PIC_LNAME, COM_PIC_TITLE, COM_PHONE, COM_EMAIL, POSTCODE) VALUES ('GreenTech Materials','Building Materials','456 Nature Ave, GeorgeTown','Amina','Rahman','Ms','6012-345 6790','contact@greentech.com',10100);
+INSERT INTO COMPANY (COM_NAME, COM_CATEGORY, COM_ADDR, COM_PIC_FNAME, COM_PIC_LNAME, COM_PIC_TITLE, COM_PHONE, COM_EMAIL, POSTCODE) VALUES ('SolidCore Industries','Concrete Products','789  Taman Riang, Johor Bahru','John','Lim','Dr','6012-345 6791','sales@solidcore.com',80000);
+INSERT INTO COMPANY (COM_NAME, COM_CATEGORY, COM_ADDR, COM_PIC_FNAME, COM_PIC_LNAME, COM_PIC_TITLE, COM_PHONE, COM_EMAIL, POSTCODE) VALUES ('Recycled Structures','Recycled Materials','321 Blvd Road, Shah Alam','Maria','Tan','Ms','6012-345 6792','recycle@structures.com',75000);
+INSERT INTO COMPANY (COM_NAME, COM_CATEGORY, COM_ADDR, COM_PIC_FNAME, COM_PIC_LNAME, COM_PIC_TITLE, COM_PHONE, COM_EMAIL, POSTCODE) VALUES ('Bamboo Creations','Eco-friendly Build','654 Industrial Park, Bayan Lepas','Ismail','Zulkifli','Mr','6012-345 6793','bamboo@creations.com',88000);
