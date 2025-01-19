@@ -321,7 +321,8 @@ CREATE TABLE CITY (
         CITY_STATE IN (
             'Johor', 'Kedah', 'Kelantan', 'Melaka', 'Negeri Sembilan',
             'Pahang', 'Penang', 'Perak', 'Perlis', 'Sabah', 'Sarawak', 
-            'Selangor', 'Terengganu', 'Wilayah Persekutuan'
+            'Selangor', 'Terengganu', 'Wilayah Persekutuan Kuala Lumpur',
+            'Wilayah Persekutuan Labuan', 'Wilayah Persekutuan Putrajaya'
         )
     )
 );
