@@ -10,3 +10,13 @@ INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('P
 INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Structural Steel Plate','Steel plates for building frameworks','Kilogram',5.75);
 INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Cement Bag','50kg bags of high-grade cement','Bag',25);
 INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Bamboo Panels','Eco-friendly bamboo panels for flooring','Square Meter',30);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Glass Windows','Tempered glass windows for buildings','Square Meter',50);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('PVC Pipes','Durable PVC pipes for plumbing','Meter',2.5);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Aluminum Sheets','Lightweight aluminum sheets for roofing','Square Meter',15);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Granite Slabs','Polished granite slabs for countertops','Square Meter',100);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Gypsum Board','Fire-resistant gypsum boards for walls','Sheet',10);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Ceramic Tiles','High-quality ceramic tiles for flooring','Square Meter',20);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Wooden Beams','Treated wooden beams for construction','Meter',12);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Marble Tiles','Luxurious marble tiles for flooring','Square Meter',80);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Asphalt Shingles','Durable asphalt shingles for roofing','Square Meter',25);
+INSERT INTO PRODUCT (PROD_NAME, PROD_DESC, PROD_UOM, PROD_UNIT_PRICE) VALUES ('Copper Wires','High-conductivity copper wires for electrical work','Kilogram',10);
