@@ -205,6 +205,47 @@ CREATE TABLE PRODUCT (
 );
 
 -- Module 2: Inventory and Storage Management
+-- CITY
+-- CITY_SEQ (5)
+CREATE TABLE CITY (
+    POSTCODE CHAR(5) PRIMARY KEY,
+    CITY_NAME VARCHAR2(35) NOT NULL,
+    CITY_STATE VARCHAR2(35) NOT NULL,
+
+    CONSTRAINT CITY_POSTCODE_CHK CHECK (
+        REGEXP_LIKE(POSTCODE, '^\d{5}$')
+    ),
+    CONSTRAINT CITY_STATE_CHK CHECK (
+        CITY_STATE IN (
+            'Johor', 'Kedah', 'Kelantan', 'Melaka', 'Negeri Sembilan',
+            'Pahang', 'Penang', 'Perak', 'Perlis', 'Sabah', 'Sarawak', 
+            'Selangor', 'Terengganu', 'Wilayah Persekutuan Kuala Lumpur',
+            'Wilayah Persekutuan Labuan', 'Wilayah Persekutuan Putrajaya'
+        )
+    )
+);
+
+-- create function to filter city based on the state
+CREATE OR REPLACE FUNCTION FN_FILTER_CITY (
+    p_state IN CITY.CITY_STATE%TYPE
+) RETURN SYS_REFCURSOR AS
+    v_cursor SYS_REFCURSOR;
+BEGIN
+    OPEN v_cursor FOR
+        SELECT * FROM CITY WHERE CITY_STATE = p_state;
+    RETURN v_cursor;
+END;
+/
+
+-- store to table for testing BY EXECUTING THE FUNCTION
+DECLARE
+    v_cursor SYS_REFCURSOR;
+BEGIN
+    v_cursor := FN_FILTER_CITY('Penang');
+    DBMS_SQL.RETURN_RESULT(v_cursor);
+END;
+/
+
 -- WAREHOUSE
 -- WAREHOUSE_SEQ (4)
 CREATE TABLE WAREHOUSE (
@@ -217,8 +258,8 @@ CREATE TABLE WAREHOUSE (
     WHS_OPEN TIMESTAMP NOT NULL,
     WHS_CLOSE TIMESTAMP NOT NULL,
     WHS_IMG BLOB,
-    POSTCODE NUMBER(5) NOT NULL,
-    -- FOREIGN KEY (POSTCODE) REFERENCES CITY(POSTCODE)
+    POSTCODE CHAR(5) NOT NULL,
+    FOREIGN KEY (POSTCODE) REFERENCES CITY(POSTCODE),
 
     CONSTRAINT WAREHOUSE_PK PRIMARY KEY (WHS_ID),
     CONSTRAINT WHS_PHONE_CHK CHECK (
@@ -238,8 +279,8 @@ CREATE TABLE SECTION (
     SECT_NAME VARCHAR2(50) NOT NULL,
     SECT_FLOOR NUMBER(2) NOT NULL,
     SECT_DATE_CHECK DATE DEFAULT SYSDATE NOT NULL,
-    WHS_ID CHAR(5) NOT NULL,
-    -- FOREIGN KEY (WHS_ID) REFERENCES WAREHOUSE(WHS_ID)
+    WHS_ID CHAR(6) NOT NULL,
+    FOREIGN KEY (WHS_ID) REFERENCES WAREHOUSE(WHS_ID),
 
     CONSTRAINT SECTION_PK PRIMARY KEY (SECT_ID),
     CONSTRAINT SECT_FLOOR_CHK CHECK (
@@ -263,8 +304,8 @@ CREATE TABLE EMPLOYEE (
     EMP_BDATE DATE NOT NULL,
     EMP_PHONE VARCHAR2(13) NOT NULL,
     EMP_EMAIL VARCHAR2(30) NOT NULL,
-    WHS_ID CHAR(5) NOT NULL,
-    -- FOREIGN KEY (WHS_ID) REFERENCES WAREHOUSE(WHS_ID)
+    WHS_ID CHAR(6) NOT NULL,
+    FOREIGN KEY (WHS_ID) REFERENCES WAREHOUSE(WHS_ID),
 
     CONSTRAINT EMPLOYEE_PK PRIMARY KEY (EMP_ID),
     CONSTRAINT EMP_PW_CHK CHECK (
@@ -304,47 +345,6 @@ BEGIN
     IF :NEW.EMP_BDATE > SYSDATE THEN
         RAISE_APPLICATION_ERROR(-20001, 'EMP_BDATE cannot be in the future');
     END IF;
-END;
-/
-
--- CITY
--- CITY_SEQ (5)
-CREATE TABLE CITY (
-    POSTCODE CHAR(5) PRIMARY KEY,
-    CITY_NAME VARCHAR2(20) NOT NULL,
-    CITY_STATE VARCHAR2(35) NOT NULL,
-
-    CONSTRAINT CITY_POSTCODE_CHK CHECK (
-        REGEXP_LIKE(POSTCODE, '^\d{5}$')
-    ),
-    CONSTRAINT CITY_STATE_CHK CHECK (
-        CITY_STATE IN (
-            'Johor', 'Kedah', 'Kelantan', 'Melaka', 'Negeri Sembilan',
-            'Pahang', 'Penang', 'Perak', 'Perlis', 'Sabah', 'Sarawak', 
-            'Selangor', 'Terengganu', 'Wilayah Persekutuan Kuala Lumpur',
-            'Wilayah Persekutuan Labuan', 'Wilayah Persekutuan Putrajaya'
-        )
-    )
-);
-
--- create function to filter city based on the state
-CREATE OR REPLACE FUNCTION FN_FILTER_CITY (
-    p_state IN CITY.CITY_STATE%TYPE
-) RETURN SYS_REFCURSOR AS
-    v_cursor SYS_REFCURSOR;
-BEGIN
-    OPEN v_cursor FOR
-        SELECT * FROM CITY WHERE CITY_STATE = p_state;
-    RETURN v_cursor;
-END;
-/
-
--- store to table for testing BY EXECUTING THE FUNCTION
-DECLARE
-    v_cursor SYS_REFCURSOR;
-BEGIN
-    v_cursor := FN_FILTER_CITY('Penang');
-    DBMS_SQL.RETURN_RESULT(v_cursor);
 END;
 /
 
