@@ -62,7 +62,19 @@ CREATE SEQUENCE FEEDBACKS_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE TABLE CITY (
     POSTCODE VARCHAR2(5) PRIMARY KEY,
     CITY_NAME VARCHAR2(50) NOT NULL,
-    CITY_STATE VARCHAR2(50) NOT NULL
+    CITY_STATE VARCHAR2(50) NOT NULL,
+
+    CONSTRAINT CITY_POSTCODE_CHK CHECK (
+        REGEXP_LIKE(POSTCODE, '^\d{5}$')
+    ),
+    CONSTRAINT CITY_STATE_CHK CHECK (
+        CITY_STATE IN (
+            'Johor', 'Kedah', 'Kelantan', 'Melaka', 'Negeri Sembilan',
+            'Pahang', 'Penang', 'Perak', 'Perlis', 'Sabah', 'Sarawak', 
+            'Selangor', 'Terengganu', 'Wilayah Persekutuan Kuala Lumpur',
+            'Wilayah Persekutuan Labuan', 'Wilayah Persekutuan Putrajaya'
+        )
+    )
 );
 
 -- WAREHOUSE
@@ -80,6 +92,20 @@ CREATE TABLE WAREHOUSE (
 
     CONSTRAINT WAREHOUSE_PK PRIMARY KEY (WHS_ID),
     CONSTRAINT WAREHOUSE_FK1 FOREIGN KEY (POSTCODE) REFERENCES CITY (POSTCODE)
+
+    CONSTRAINT WAREHOUSE_PK PRIMARY KEY (WHS_ID),
+    CONSTRAINT WHS_PHONE_CHK CHECK (
+        REGEXP_LIKE(WHS_PHONE, '^\+?(\d{1,4})?[-. ]?(\d{3,4})?[-. ]?(\d{4})$')
+    ),
+    CONSTRAINT WHS_OPEN_CHK CHECK (
+        REGEXP_LIKE(WHS_OPEN, '^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')
+    ),
+    CONSTRAINT WHS_CLOSE_CHK CHECK (
+        REGEXP_LIKE(WHS_CLOSE, '^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')
+    ),
+    CONSTRAINT WHS_OPEN_CLOSE_CHK CHECK (
+        WHS_OPEN < WHS_CLOSE
+    )
 );
 
 -- SECTION
