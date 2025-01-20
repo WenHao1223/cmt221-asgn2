@@ -296,7 +296,7 @@ CREATE TABLE ORDERS (
     ORD_RECIPENT_FNAME VARCHAR2(20) NOT NULL,
     ORD_RECIPENT_LNAME VARCHAR2(20) NOT NULL,
     ORD_RECIPENT_PHONE VARCHAR2(13) NOT NULL,
-    ORD_STATUS CHAR(3) NOT NULL,
+    ORD_STATUS CHAR(3) DEFAULT 'PND' NOT NULL,
     SHIPD_ID VARCHAR2(10) NOT NULL,
     DRIVER_ID VARCHAR2(10),
 
@@ -312,7 +312,7 @@ CREATE TABLE ORDERS (
         REGEXP_LIKE(ORD_RECIPENT_PHONE, '^\+?(\d{1,4})?[-. ]?(\d{3,4})?[-. ]?(\d{4})$')
     ),
     CONSTRAINT ORD_STATUS_CHK CHECK (
-        ORD_STATUS IN ('PND', 'PRC', 'DLV', 'RTR', 'CPL') -- Pending, Processing, Delivering, Return, Complete
+        ORD_STATUS IN ('PND', 'DLV', 'RTR', 'CPL') -- Pending, Delivering, Return, Complete
     )
 );
 
